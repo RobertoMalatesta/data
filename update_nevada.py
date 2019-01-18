@@ -17,7 +17,7 @@ def run_all(commands: List[str]) -> None:
 
 
 def run(command: str) -> None:
-    """Execute a command, raising Exception if it has an error"""
+    """Execute a single command, raising Exception if it has an error"""
     if os.system(command) != 0:
         raise Exception("Error running " + command)
 
