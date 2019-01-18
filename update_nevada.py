@@ -5,9 +5,10 @@
 # the data repository.
 
 import os
+from typing import List
 
 
-def run_all(commands: list):
+def run_all(commands: List[str]):
     for cmd in commands:
         run(cmd)
 
