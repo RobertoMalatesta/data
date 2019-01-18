@@ -7,12 +7,19 @@
 import os
 
 
-def run(command):
+def run_all(commands: list):
+    for cmd in commands:
+        run(cmd)
+
+
+def run(command: str):
     if os.system(command) != 0:
         raise Exception("Error running " + command)
 
 
-run("docker run publiclaw/nevada-nrs > usa/nevada/nrs.json")
-run("git add usa/nevada/nrs.json")
-run("git commit -m 'Daily Nevada update'")
-run("git push origin master")
+run_all([
+        "docker run publiclaw/nevada-nrs > usa/nevada/nrs.json",
+        "git add usa/nevada/nrs.json",
+        "git commit -m 'Daily Nevada update'",
+        "git push origin master"
+        ])
