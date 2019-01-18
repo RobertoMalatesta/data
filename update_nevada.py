@@ -10,13 +10,13 @@ import os
 from typing import List
 
 
-def run_all(commands: List[str]):
+def run_all(commands: List[str]) -> None:
     """Execute a list of commands, breaking on error"""
     for cmd in commands:
         run(cmd)
 
 
-def run(command: str):
+def run(command: str) -> None:
     """Execute a command, raising Exception if it has an error"""
     if os.system(command) != 0:
         raise Exception("Error running " + command)
