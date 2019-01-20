@@ -1,30 +1,22 @@
 #!/bin/env python3.7
 
 """
-A script, meant to be run from cron, which parses
-the current Nevada laws and commits the result to
+A cron script which parses the current Nevada laws and commits the result to
 the data repository.
 """
 
-import os
-from typing import List
+from util import run
 
 
-def run_all(commands: List[str]) -> None:
-    """Execute a list of commands, breaking on error"""
-    for cmd in commands:
-        run(cmd)
+OUTPUT_PATH: str = "usa/nevada/nrs.json"
 
 
-def run(command: str) -> None:
-    """Execute a single command, raising Exception if it has an error"""
-    if os.system(command) != 0:
-        raise Exception("Error running " + command)
+run(
+    # Download, parse, and save the NRS
+    f"docker run publiclaw/nevada-nrs > ${OUTPUT_PATH}",
 
-
-run_all([
-    "docker run publiclaw/nevada-nrs > usa/nevada/nrs.json",
-    "git add usa/nevada/nrs.json",
+    # Commit to git, and push to the upstream repo
+    f"git add ${OUTPUT_PATH}",
     "git commit -m 'Daily Nevada update'",
     "git push origin master"
-])
+)
