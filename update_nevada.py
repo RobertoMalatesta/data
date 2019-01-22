@@ -13,10 +13,10 @@ OUTPUT_PATH: str = "usa/nevada/nrs.json"
 
 run(
     # Download, parse, and save the NRS
-    f"docker run publiclaw/nevada-nrs > ${OUTPUT_PATH}",
+    f"docker run publiclaw/nevada-nrs > {OUTPUT_PATH}",
 
     # Commit to git, and push to the upstream repo
-    f"git add ${OUTPUT_PATH}",
+    f"git add {OUTPUT_PATH}",
     "git commit -m 'Daily Nevada update'",
     "git push origin master"
 )
