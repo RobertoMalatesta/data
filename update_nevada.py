@@ -16,7 +16,7 @@ run(
     f"docker run publiclaw/nevada-nrs > {OUTPUT_PATH}",
 
     # Commit to git, and push to the upstream repo
-    "git pull --prune"
+    "git pull --prune",
     f"git add {OUTPUT_PATH}",
     "git commit -m 'Daily Nevada update'",
     "git push origin master"
