@@ -9,7 +9,7 @@ def update(name: str, output_path: str, scraper_parser: str) -> None:
     """Use a Docker container scraper+parser to refresh content.
 
     `scraper_parser` is expected to be a path/name reference to
-    a Docker container on hub.docker.com. It's interface is
+    a Docker container on hub.docker.com. Its interface is
     expected to output JSON when it's `run`.
 
     `name` will be used to create a git commit message.
