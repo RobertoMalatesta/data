@@ -5,6 +5,30 @@ Common functions for update scripts.
 import os
 
 
+def update(name: str, output_path: str, scraper_parser: str) -> None:
+    """Use a Docker container scraper+parser to refresh content.
+
+    `scraper_parser` is expected to be a path/name reference to
+    a Docker container on hub.docker.com. It's interface is
+    expected to output JSON when it's `run`.
+
+    `name` will be used to create a git commit message.
+
+    `output_path` is a relative path in this `data` repo.
+    """
+
+    run(
+        # Download, parse, and save the output
+        f"docker run #{scraper_parser} > {output_path}",
+
+        # Commit to git and push to the upstream repo
+        "git pull --prune",
+        f"git add {output_path}",
+        f"git commit -m 'Daily {name} update'",
+        "git push origin master",
+    )
+
+
 def run(*commands: str) -> None:
     """Execute a list of commands, breaking on error"""
     for cmd in commands:
