@@ -19,7 +19,7 @@ def update(name: str, output_path: str, scraper_parser: str) -> None:
 
     run(
         # Download, parse, and save the output
-        f"docker run #{scraper_parser} > {output_path}",
+        f"docker run {scraper_parser} > {output_path}",
 
         # Commit to git and push to the upstream repo
         "git pull --prune",
@@ -37,5 +37,6 @@ def run(*commands: str) -> None:
 
 def run_single(command: str) -> None:
     """Execute one command, raising Exception if it has an error"""
+    print(f"\nRunning command: {command}")
     if os.system(command) != 0:
         raise Exception("Error running " + command)
