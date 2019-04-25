@@ -17,11 +17,18 @@ def update(publication_name: str, output_path: str, scraper_parser: str) -> None
     `output_path` is a relative path in this `data` repo.
     """
 
-    run(
-        # Download, parse, and save the output
-        f"docker run {scraper_parser} > {output_path}",
+    parse_and_save(output_path, scraper_parser)
+    upload_to_repo(output_path, publication_name)
 
-        # Commit to git and push to the upstream repo
+
+def parse_and_save(output_path, scraper_parser):
+    run(
+        f"docker run {scraper_parser} > {output_path}"
+    )
+
+
+def upload_to_repo(output_path, publication_name):
+    run(
         "git pull --prune",
         f"git add {output_path}",
         f"git commit -m 'Daily {publication_name} update'",
