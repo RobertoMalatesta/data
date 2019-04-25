@@ -8,7 +8,7 @@ the data repository.
 from util import update
 
 update(
-    name="Nevada NRS",
+    publication_name="Nevada NRS",
     output_path="usa/nevada/nrs.json",
     scraper_parser="publiclaw/nevada-nrs"
 )

@@ -8,7 +8,7 @@ and commits the result to the data repository.
 from util import update
 
 update(
-    name="Oregon OAR",
+    publication_name="Oregon OAR",
     output_path="usa/oregon/oar.json",
     scraper_parser="publiclaw/oregon-oar",
 )

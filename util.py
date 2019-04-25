@@ -5,14 +5,14 @@ Common functions for update scripts.
 import os
 
 
-def update(name: str, output_path: str, scraper_parser: str) -> None:
+def update(publication_name: str, output_path: str, scraper_parser: str) -> None:
     """Use a Docker container scraper+parser to refresh content.
 
     `scraper_parser` is expected to be a path/name reference to
     a Docker container on hub.docker.com. Its interface is
     expected to output JSON when it's `run`.
 
-    `name` will be used to create a git commit message.
+    `publication_name` will be used to create a git commit message.
 
     `output_path` is a relative path in this `data` repo.
     """
@@ -24,7 +24,7 @@ def update(name: str, output_path: str, scraper_parser: str) -> None:
         # Commit to git and push to the upstream repo
         "git pull --prune",
         f"git add {output_path}",
-        f"git commit -m 'Daily {name} update'",
+        f"git commit -m 'Daily {publication_name} update'",
         "git push origin master",
     )
 
