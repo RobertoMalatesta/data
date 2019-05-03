@@ -5,7 +5,7 @@ A cron script which parses the Oregon Administrative Rules
 and commits the result to the data repository.
 """
 
-from util import update
+from src.util import update
 
 update(
     publication_name="Oregon OAR",

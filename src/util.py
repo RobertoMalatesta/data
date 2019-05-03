@@ -22,9 +22,7 @@ def update(publication_name: str, output_path: str, scraper_parser: str) -> None
 
 
 def parse_and_save(output_path, scraper_parser):
-    run(
-        f"docker run {scraper_parser} > {output_path}"
-    )
+    run(f"docker run {scraper_parser} > {output_path}")
 
 
 def upload_to_repo(output_path, publication_name):
