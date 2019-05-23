@@ -2,5 +2,5 @@
 
 # Public Law Data Repository
 
-We run [special Docker images](https://hub.docker.com/u/publiclaw) nightly and the parsing output flows into this repository. We're
+We run [parsers wrapped in Docker images](https://hub.docker.com/u/publiclaw) nightly.  The parsing output then flows into this repository. We're
 setting up [mirroring to Kaggle](https://www.kaggle.com/public-law) too.
